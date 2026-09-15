@@ -1,6 +1,6 @@
 <script setup>
-import { ref, onMounted } from 'vue'
-import { GraduationCap, Award, Calendar, ExternalLink } from 'lucide-vue-next'
+import { onMounted, ref } from 'vue'
+import { GraduationCap, Award, Calendar } from 'lucide-vue-next'
 
 const sectionRef = ref(null)
 
@@ -11,18 +11,16 @@ const education = [
     school: 'Atos CI',
     period: '2024',
     type: 'Certification',
-    color: '#22d3ee',
-    desc: 'Formation en architecture et développement d\'applications d\'entreprise. Approche microservices, conteneurisation Docker, bonnes pratiques DevOps.',
+    desc: 'Architecture d’applications d’entreprise, microservices, Docker, pratiques DevOps.',
     icon: Award,
   },
   {
     id: 2,
-    degree: 'Certificat Spring Boot – Udemy',
+    degree: 'Spring Boot — Udemy',
     school: 'Udemy',
     period: '2024',
-    type: 'Certificat en ligne',
-    color: '#6366f1',
-    desc: 'Développement d\'APIs REST robustes avec Spring Boot, Spring Security, JPA/Hibernate et déploiement sur serveur cloud.',
+    type: 'Certificat',
+    desc: 'APIs REST, Spring Security, JPA/Hibernate et déploiement cloud.',
     icon: Award,
   },
   {
@@ -31,8 +29,7 @@ const education = [
     school: 'Nabou Fall Akademy',
     period: '2024',
     type: 'Formation',
-    color: '#ec4899',
-    desc: 'Développement personnel et professionnel : communication interpersonnelle, gestion du stress, leadership situationnel et travail en équipe.',
+    desc: 'Communication, gestion du stress, leadership situationnel, travail en équipe.',
     icon: GraduationCap,
   },
   {
@@ -41,18 +38,16 @@ const education = [
     school: 'Google Developer Groups',
     period: '2024',
     type: 'Conférence',
-    color: '#f59e0b',
-    desc: 'Participation au DevFest d\'Abidjan – conférences sur le Cloud Computing, l\'IA générative, Firebase et les innovations Google.',
+    desc: 'Cloud, IA générative, Firebase et écosystème Google.',
     icon: Award,
   },
   {
     id: 5,
-    degree: 'BTS – Développement Informatique',
+    degree: 'BTS — Développement Informatique',
     school: 'Institut de Formation Sainte Marie',
     period: '2019 – 2020',
     type: 'Diplôme',
-    color: '#8b5cf6',
-    desc: 'Brevet de Technicien Supérieur en informatique de gestion, spécialité développement logiciel. Bases solides en algorithmique, programmation et bases de données.',
+    desc: 'Informatique de gestion : algorithmique, programmation, bases de données.',
     icon: GraduationCap,
   },
 ]
@@ -72,38 +67,28 @@ onMounted(() => {
   <section id="education" class="section education" ref="sectionRef">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-label">// Formation</span>
+        <span class="section-label">05 — Formation</span>
         <h2>Parcours académique</h2>
-        <p>Diplômes, certifications et formations qui jalonnent mon évolution continue.</p>
+        <p>Diplômes, certifications et formations qui jalonnent une pratique en continu.</p>
       </div>
 
-      <div class="edu__grid">
+      <div class="edu">
         <article
           v-for="(item, i) in education"
           :key="item.id"
           class="edu__card"
-          :style="`--edu-color: ${item.color}; --delay: ${i * 0.1}s`"
+          :style="`--delay: ${i * 0.08}s`"
         >
-          <div class="edu__card-top">
-            <div class="edu__icon" :style="`color: ${item.color}; background: ${item.color}15`">
-              <component :is="item.icon" :size="22" />
+          <div class="edu__top">
+            <div class="edu__icon">
+              <component :is="item.icon" :size="18" />
             </div>
-            <div class="edu__badge" :style="`color: ${item.color}; border-color: ${item.color}30; background: ${item.color}10`">
-              {{ item.type }}
-            </div>
+            <span>{{ item.type }}</span>
           </div>
-
-          <h3 class="edu__degree">{{ item.degree }}</h3>
+          <h3>{{ item.degree }}</h3>
           <p class="edu__school">{{ item.school }}</p>
-
-          <div class="edu__period">
-            <Calendar :size="13" />
-            {{ item.period }}
-          </div>
-
+          <p class="edu__period"><Calendar :size="13" /> {{ item.period }}</p>
           <p class="edu__desc">{{ item.desc }}</p>
-
-          <div class="edu__border-glow" :style="`background: ${item.color}`"></div>
         </article>
       </div>
     </div>
@@ -111,119 +96,98 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-@use '../assets/main.scss' as *;
+@use '../assets/tokens' as *;
 
 .education {
   background: $bg-secondary;
+  border-top: 1px solid $border-color;
 }
 
 .edu {
-  &__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
 
-    @media (max-width: 640px) {
-      grid-template-columns: 1fr;
-    }
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
   }
 
   &__card {
-    position: relative;
-    padding: 26px;
+    padding: 24px;
     background: $bg-card;
     border: 1px solid $border-color;
     border-radius: $radius-lg;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    overflow: hidden;
+    gap: 8px;
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.3s, box-shadow 0.3s;
+    transform: translateY(16px);
+    transition: $transition-base;
     transition-delay: var(--delay);
 
     &.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: none;
     }
 
     &:hover {
-      border-color: var(--edu-color, $accent-blue);
-      background: $bg-card-hover;
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
-
-      .edu__border-glow { opacity: 0.6; }
+      border-color: rgba($accent, 0.4);
+      transform: translateY(-3px);
     }
   }
 
-  &__border-glow {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    opacity: 0.3;
-    transition: $transition-base;
-  }
-
-  &__card-top {
+  &__top {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    align-items: center;
+    margin-bottom: 6px;
+
+    span {
+      font-family: $font-mono;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: $accent;
+      border: 1px solid rgba($accent, 0.25);
+      padding: 3px 8px;
+      border-radius: 100px;
+    }
   }
 
   &__icon {
-    width: 46px; height: 46px;
-    border-radius: $radius-sm;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    color: $accent;
+    background: rgba($accent, 0.1);
   }
 
-  &__badge {
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 4px 10px;
-    border-radius: 100px;
-    border: 1px solid;
-    font-family: $font-mono;
-    white-space: nowrap;
-  }
-
-  &__degree {
+  h3 {
     font-size: 1rem;
-    font-weight: 700;
-    color: $text-primary;
-    line-height: 1.4;
+    line-height: 1.35;
   }
 
   &__school {
-    font-size: 0.88rem;
     font-weight: 600;
-    color: var(--edu-color, $accent-blue);
+    color: $accent-soft;
+    font-size: 0.88rem;
   }
 
   &__period {
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     color: $text-muted;
     font-family: $font-mono;
-
-    svg { flex-shrink: 0; }
   }
 
   &__desc {
     font-size: 0.85rem;
     color: $text-secondary;
-    line-height: 1.75;
+    line-height: 1.7;
   }
 }
 </style>

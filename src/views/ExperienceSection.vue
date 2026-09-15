@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { Briefcase, Calendar, MapPin, ChevronRight } from 'lucide-vue-next'
+import { Calendar, MapPin } from 'lucide-vue-next'
 
 const sectionRef = ref(null)
 
@@ -12,12 +12,11 @@ const experiences = [
     location: 'Abidjan, CI',
     period: 'Mai 2025 – Aujourd\'hui',
     type: 'CDI',
-    color: '#6366f1',
     tasks: [
-      'Intégration de maquettes Figma en composants Angular réutilisables et maintenables',
-      'Développement de fonctionnalités front-end en collaboration avec les équipes produit',
-      'Gestion des sprints et des tickets via Jira en méthodologie agile Scrum',
-      'Optimisation des performances et de l\'accessibilité des interfaces web',
+      'Développement des plateformes PRESTIGE-SMS (campagnes SMS) et PRIMUS KARE (parcours de soins)',
+      'Intégration de maquettes Figma en composants Angular réutilisables',
+      'Fonctionnalités front-end en collaboration produit, suivi de tickets Jira / Scrum',
+      'Performance, accessibilité et qualité des interfaces métier',
     ],
     tags: ['Angular', 'TypeScript', 'Figma', 'Jira', 'Scrum', 'RxJS'],
   },
@@ -28,14 +27,12 @@ const experiences = [
     location: 'Abidjan, CI',
     period: 'Janvier 2025 – Mai 2025',
     type: 'Stage',
-    color: '#8b5cf6',
     tasks: [
-      'Développement d\'une application mobile éducative pour iOS et Android',
-      'Conception et implémentation de widgets Flutter réutilisables et personnalisables',
-      'Intégration d\'APIs REST et gestion de l\'état avec Bloc/Provider',
-      'Tests unitaires et d\'intégration, publication sur App Store et Play Store',
+      'Application mobile éducative iOS et Android',
+      'Widgets Flutter réutilisables, état avec Bloc / Provider',
+      'Intégration d’APIs REST, tests, publication App Store et Play Store',
     ],
-    tags: ['Flutter', 'Dart', 'Bloc', 'Provider', 'iOS', 'Android', 'API REST'],
+    tags: ['Flutter', 'Dart', 'Bloc', 'Provider', 'iOS', 'Android'],
   },
   {
     id: 3,
@@ -44,14 +41,12 @@ const experiences = [
     location: 'Abidjan, CI',
     period: 'Août 2024 – Novembre 2024',
     type: 'Stage',
-    color: '#22d3ee',
     tasks: [
-      'Architecture et développement de microservices avec Spring Boot et Docker',
-      'Développement d\'une application de gestion scolaire (inscriptions, notes, emplois du temps)',
-      'Application de santé avec module de vidéoconférence pour consultations à distance',
-      'Base de données PostgreSQL, documentation API avec Swagger',
+      'Microservices Spring Boot et Docker',
+      'Application de gestion scolaire (inscriptions, notes, emplois du temps)',
+      'Module santé avec vidéoconférence, PostgreSQL et documentation Swagger',
     ],
-    tags: ['Spring Boot', 'Angular', 'Docker', 'PostgreSQL', 'Microservices', 'Swagger'],
+    tags: ['Spring Boot', 'Angular', 'Docker', 'PostgreSQL', 'Swagger'],
   },
   {
     id: 4,
@@ -60,14 +55,12 @@ const experiences = [
     location: 'Abidjan, CI',
     period: 'Mars 2021 – Décembre 2023',
     type: 'CDI',
-    color: '#ec4899',
     tasks: [
-      'Conception et développement d\'interfaces web modernes avec Vue.js et Pinia',
-      'Développement d\'APIs REST avec Laravel pour diverses applications métier',
-      'Implémentation de fonctionnalités CRUD, authentification et gestion des rôles',
-      'Maintenance, optimisation et mise en production des applications',
+      'Interfaces Vue.js / Pinia et APIs Laravel',
+      'CRUD, authentification, rôles, mise en production',
+      'Maintenance et optimisation d’applications métier',
     ],
-    tags: ['Laravel', 'Vue.js', 'Pinia', 'PHP', 'MySQL', 'API REST', 'WordPress'],
+    tags: ['Laravel', 'Vue.js', 'Pinia', 'PHP', 'MySQL', 'WordPress'],
   },
 ]
 
@@ -86,245 +79,150 @@ onMounted(() => {
   <section id="experience" class="section experience" ref="sectionRef">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-label">// Expériences</span>
+        <span class="section-label">03 — Expérience</span>
         <h2>Parcours professionnel</h2>
-        <p>Des expériences variées qui m'ont forgé en développeur polyvalent et rigoureux.</p>
+        <p>Des contextes variés : éditeur logiciel, hub d’innovation, ESN, agence digitale.</p>
       </div>
 
-      <div class="exp__timeline">
-        <!-- Vertical line -->
-        <div class="exp__line"></div>
-
-        <div
+      <div class="exp">
+        <article
           v-for="(exp, i) in experiences"
           :key="exp.id"
           class="exp__item"
-          :style="`--exp-color: ${exp.color}; --delay: ${i * 0.15}s`"
+          :style="`--delay: ${i * 0.1}s`"
         >
-          <!-- Dot -->
-          <div class="exp__dot">
-            <Briefcase :size="16" />
+          <div class="exp__meta">
+            <span class="exp__index">0{{ i + 1 }}</span>
+            <span class="exp__type">{{ exp.type }}</span>
+            <span class="exp__period"><Calendar :size="13" /> {{ exp.period }}</span>
+            <span class="exp__loc"><MapPin :size="13" /> {{ exp.location }}</span>
           </div>
 
-          <!-- Card -->
-          <div class="exp__card">
-            <!-- Top meta -->
-            <div class="exp__card-top">
-              <div class="exp__card-left">
-                <span class="exp__type-badge" :style="`color: ${exp.color}; border-color: ${exp.color}30; background: ${exp.color}10`">
-                  {{ exp.type }}
-                </span>
-                <h3 class="exp__role">{{ exp.role }}</h3>
-                <p class="exp__company">{{ exp.company }}</p>
-              </div>
-              <div class="exp__card-right">
-                <div class="exp__meta-item">
-                  <Calendar :size="14" />
-                  <span>{{ exp.period }}</span>
-                </div>
-                <div class="exp__meta-item">
-                  <MapPin :size="14" />
-                  <span>{{ exp.location }}</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Tasks -->
-            <ul class="exp__tasks">
-              <li v-for="task in exp.tasks" :key="task">
-                <ChevronRight :size="14" :style="`color: ${exp.color}`" />
-                {{ task }}
-              </li>
+          <div class="exp__body">
+            <h3>{{ exp.role }}</h3>
+            <p class="exp__company">{{ exp.company }}</p>
+            <ul>
+              <li v-for="task in exp.tasks" :key="task">{{ task }}</li>
             </ul>
-
-            <!-- Tags -->
             <div class="exp__tags">
-              <span
-                v-for="tag in exp.tags"
-                :key="tag"
-                class="exp__tag"
-                :style="`color: ${exp.color}; border-color: ${exp.color}25; background: ${exp.color}0d`"
-              >{{ tag }}</span>
+              <span v-for="tag in exp.tags" :key="tag">{{ tag }}</span>
             </div>
           </div>
-        </div>
+        </article>
       </div>
     </div>
   </section>
 </template>
 
 <style lang="scss" scoped>
-@use '../assets/main.scss' as *;
+@use '../assets/tokens' as *;
 
 .experience {
   background: $bg-secondary;
+  border-top: 1px solid $border-color;
 }
 
 .exp {
-  &__timeline {
-    position: relative;
-    padding-left: 50px;
-
-    @media (max-width: 640px) {
-      padding-left: 32px;
-    }
-  }
-
-  &__line {
-    position: absolute;
-    left: 19px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, $accent-blue, $accent-violet, transparent);
-    border-radius: 1px;
-
-    @media (max-width: 640px) {
-      left: 11px;
-    }
-  }
+  display: flex;
+  flex-direction: column;
 
   &__item {
-    position: relative;
-    margin-bottom: 40px;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 32px;
+    padding: 36px 0;
+    border-top: 1px solid $border-color;
     opacity: 0;
-    transform: translateX(-20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(16px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
     transition-delay: var(--delay);
 
     &.visible {
       opacity: 1;
-      transform: translateX(0);
+      transform: none;
     }
 
-    &:last-child { margin-bottom: 0; }
-  }
+    &:last-child { border-bottom: 1px solid $border-color; }
 
-  &__dot {
-    position: absolute;
-    left: -42px;
-    top: 24px;
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    background: $bg-card;
-    border: 2px solid var(--exp-color, $accent-blue);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--exp-color, $accent-blue);
-    box-shadow: 0 0 0 4px rgba(0,0,0,0.4), 0 0 16px var(--exp-color, $accent-blue);
-    z-index: 1;
-    transition: $transition-base;
-
-    @media (max-width: 640px) {
-      left: -28px;
-      width: 28px; height: 28px;
-      top: 28px;
-
-      svg { display: none; }
+    @media (max-width: 760px) {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      padding: 28px 0;
     }
   }
 
-  &__card {
-    background: $bg-card;
-    border: 1px solid $border-color;
-    border-radius: $radius-lg;
-    padding: 28px 28px 22px;
-    transition: $transition-base;
-
-    &:hover {
-      border-color: var(--exp-color, $accent-blue);
-      background: $bg-card-hover;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 0 1px var(--exp-color) inset;
-      transform: translateY(-2px);
-    }
-
-    @media (max-width: 640px) {
-      padding: 20px 18px 16px;
-    }
-  }
-
-  &__card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 24px;
-    margin-bottom: 20px;
-
-    @media (max-width: 700px) {
-      flex-direction: column;
-      gap: 12px;
-    }
-  }
-
-  &__type-badge {
-    display: inline-block;
-    font-size: 0.72rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 3px 10px;
-    border-radius: 100px;
-    border: 1px solid;
-    margin-bottom: 10px;
-    font-family: $font-mono;
-  }
-
-  &__role {
-    font-size: 1.08rem;
-    font-weight: 700;
-    color: $text-primary;
-    margin-bottom: 4px;
-  }
-
-  &__company {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--exp-color, $accent-blue);
-  }
-
-  &__card-right {
+  &__meta {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    flex-shrink: 0;
-    text-align: right;
-
-    @media (max-width: 700px) {
-      text-align: left;
-    }
+    padding-top: 4px;
   }
 
-  &__meta-item {
+  &__index {
+    font-family: $font-heading;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: $accent;
+    letter-spacing: -0.04em;
+  }
+
+  &__type {
+    align-self: flex-start;
+    font-family: $font-mono;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: $accent-soft;
+    border: 1px solid rgba($accent, 0.3);
+    padding: 3px 8px;
+    border-radius: 100px;
+  }
+
+  &__period,
+  &__loc {
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     color: $text-muted;
-    justify-content: flex-end;
-
-    @media (max-width: 700px) {
-      justify-content: flex-start;
-    }
-
-    svg { flex-shrink: 0; }
   }
 
-  &__tasks {
+  &__body {
+    h3 {
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+  }
+
+  &__company {
+    color: $accent;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  ul {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
+  }
 
-    li {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      font-size: 0.9rem;
-      color: $text-secondary;
-      line-height: 1.6;
+  li {
+    position: relative;
+    padding-left: 16px;
+    font-size: 0.92rem;
+    color: $text-secondary;
+    line-height: 1.65;
 
-      svg { flex-shrink: 0; margin-top: 3px; }
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: $accent;
     }
   }
 
@@ -332,17 +230,16 @@ onMounted(() => {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    padding-top: 16px;
-    border-top: 1px solid $border-color;
-  }
 
-  &__tag {
-    font-size: 0.72rem;
-    font-weight: 500;
-    font-family: $font-mono;
-    padding: 4px 10px;
-    border-radius: 100px;
-    border: 1px solid;
+    span {
+      font-family: $font-mono;
+      font-size: 0.7rem;
+      padding: 4px 10px;
+      border-radius: 100px;
+      background: rgba($accent, 0.08);
+      color: $accent-soft;
+      border: 1px solid rgba($accent, 0.16);
+    }
   }
 }
 </style>

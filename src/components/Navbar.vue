@@ -5,9 +5,9 @@ import { Menu, X } from 'lucide-vue-next'
 const isScrolled = ref(false)
 const mobileOpen = ref(false)
 const activeSection = ref('hero')
+const progress = ref(0)
 
 const navLinks = [
-  { id: 'hero',       label: 'Accueil' },
   { id: 'about',      label: 'À propos' },
   { id: 'skills',     label: 'Compétences' },
   { id: 'experience', label: 'Expérience' },
@@ -17,7 +17,10 @@ const navLinks = [
 ]
 
 function handleScroll() {
-  isScrolled.value = window.scrollY > 20
+  isScrolled.value = window.scrollY > 16
+  const doc = document.documentElement
+  const max = doc.scrollHeight - window.innerHeight
+  progress.value = max > 0 ? (window.scrollY / max) * 100 : 0
 
   const sections = navLinks.map(l => document.getElementById(l.id)).filter(Boolean)
   for (let i = sections.length - 1; i >= 0; i--) {
@@ -43,12 +46,12 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 </script>
 
 <template>
-  <nav class="navbar" :class="{ 'scrolled': isScrolled, 'mobile-open': mobileOpen }">
+  <nav class="navbar" :class="{ scrolled: isScrolled, 'mobile-open': mobileOpen }">
+    <div class="navbar__progress" :style="{ width: progress + '%' }"></div>
     <div class="navbar__inner container">
       <a class="navbar__logo" @click.prevent="scrollTo('hero')" href="#hero">
-        <span class="logo-bracket">&lt;</span>
+        <span class="logo-mark">N</span>
         <span class="logo-name">Néhémie</span>
-        <span class="logo-bracket">/&gt;</span>
       </a>
 
       <ul class="navbar__links">
@@ -63,7 +66,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
       </ul>
 
       <a href="mailto:kouyonehemiepedahel@gmail.com" class="btn-primary navbar__cta">
-        Contactez-moi
+        Me contacter
       </a>
 
       <button class="navbar__burger" @click="mobileOpen = !mobileOpen" aria-label="Menu">
@@ -72,7 +75,6 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
       </button>
     </div>
 
-    <!-- Mobile drawer -->
     <div class="navbar__mobile" :class="{ open: mobileOpen }">
       <ul>
         <li v-for="link in navLinks" :key="link.id">
@@ -85,14 +87,14 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
         </li>
       </ul>
       <a href="mailto:kouyonehemiepedahel@gmail.com" class="btn-primary mt-4">
-        Contactez-moi
+        Me contacter
       </a>
     </div>
   </nav>
 </template>
 
 <style lang="scss" scoped>
-@use '../assets/main.scss' as *;
+@use '../assets/tokens' as *;
 
 .navbar {
   position: fixed;
@@ -103,88 +105,93 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   transition: $transition-base;
   padding: 18px 0;
 
+  &__progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: $accent;
+    width: 0;
+    transition: width 0.1s linear;
+  }
+
   &.scrolled {
-    background: rgba($bg-primary, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba($bg-primary, 0.82);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
     border-bottom: 1px solid $border-color;
-    padding: 12px 0;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    padding: 10px 0;
   }
 
   &__inner {
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 32px;
   }
 
   &__logo {
-    font-family: $font-mono;
-    font-size: 1.1rem;
-    font-weight: 500;
-    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     cursor: pointer;
     white-space: nowrap;
     flex-shrink: 0;
+  }
 
-    .logo-bracket {
-      color: $accent-blue;
-    }
-    .logo-name {
-      color: $text-primary;
-      font-weight: 700;
-    }
+  .logo-mark {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: $accent;
+    color: $ink;
+    font-family: $font-heading;
+    font-weight: 800;
+    font-size: 0.95rem;
+    display: grid;
+    place-items: center;
+  }
+
+  .logo-name {
+    font-family: $font-heading;
+    font-weight: 700;
+    font-size: 1.02rem;
+    letter-spacing: -0.03em;
   }
 
   &__links {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 2px;
     flex: 1;
     justify-content: center;
 
-    @media (max-width: 900px) { display: none; }
+    @media (max-width: 1080px) { display: none; }
   }
 
   &__link {
-    padding: 7px 14px;
-    font-size: 0.875rem;
+    padding: 6px 10px;
+    font-size: 0.8rem;
     font-weight: 500;
     color: $text-secondary;
-    border-radius: $radius-sm;
+    border-radius: 6px;
     transition: $transition-fast;
-    position: relative;
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 2px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 2px;
-      background: $gradient-main;
-      border-radius: 1px;
-      transition: $transition-base;
-    }
 
     &:hover, &.active {
       color: $text-primary;
-
-      &::after { width: 60%; }
     }
 
     &.active {
-      color: $accent-blue;
+      color: $accent;
+      background: rgba($accent, 0.08);
     }
   }
 
   &__cta {
     flex-shrink: 0;
-    font-size: 0.85rem;
-    padding: 10px 22px;
+    font-size: 0.82rem;
+    padding: 9px 18px;
 
-    @media (max-width: 900px) { display: none; }
+    @media (max-width: 1080px) { display: none; }
   }
 
   &__burger {
@@ -192,31 +199,38 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
     color: $text-primary;
     padding: 6px;
     border-radius: $radius-sm;
-    transition: $transition-fast;
     margin-left: auto;
 
-    &:hover { background: rgba(255,255,255,0.06); }
+    &:hover { background: rgba(255, 255, 255, 0.06); }
 
-    @media (max-width: 900px) { display: flex; }
+    @media (max-width: 1080px) { display: flex; }
   }
 
   &__mobile {
     display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
     flex-direction: column;
     gap: 8px;
     padding: 20px $container-pad 28px;
-    background: rgba($bg-secondary, 0.97);
-    backdrop-filter: blur(20px);
+    background: $bg-secondary;
     border-bottom: 1px solid $border-color;
-    transform: translateY(-100%);
+    box-shadow: $shadow-card;
+    transform: translateY(-8px);
     opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
     transition: $transition-base;
 
-    @media (max-width: 900px) { display: flex; }
+    @media (max-width: 1080px) { display: flex; }
 
     &.open {
       transform: translateY(0);
       opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
     }
 
     ul {
@@ -233,11 +247,10 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
     font-weight: 500;
     color: $text-secondary;
     border-radius: $radius-sm;
-    transition: $transition-fast;
 
     &:hover, &.active {
-      color: $accent-blue;
-      background: rgba($accent-blue, 0.08);
+      color: $accent;
+      background: rgba($accent, 0.08);
     }
   }
 }

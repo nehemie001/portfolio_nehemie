@@ -1,14 +1,14 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { Code2, Smartphone, Server, Users } from 'lucide-vue-next'
+import { Code2, Smartphone, Server, Layout } from 'lucide-vue-next'
 
 const sectionRef = ref(null)
 
 const highlights = [
-  { icon: Code2,     label: 'Web',      value: 'Angular & Vue.js',    color: '#6366f1' },
-  { icon: Smartphone,label: 'Mobile',   value: 'Flutter iOS & Android', color: '#8b5cf6' },
-  { icon: Server,    label: 'Back-end', value: 'Spring Boot & Laravel',  color: '#22d3ee' },
-  { icon: Users,     label: 'Equipe',   value: 'Agile & Leadership',     color: '#ec4899' },
+  { icon: Code2,      label: 'Web',      value: 'Angular & Vue.js' },
+  { icon: Smartphone, label: 'Mobile',   value: 'Flutter iOS & Android' },
+  { icon: Server,     label: 'Back-end', value: 'Spring Boot & Laravel' },
+  { icon: Layout,     label: 'Produit',  value: 'Figma → production' },
 ]
 
 onMounted(() => {
@@ -25,79 +25,74 @@ onMounted(() => {
 <template>
   <section id="about" class="section about" ref="sectionRef">
     <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">// À propos</span>
-        <h2>Qui suis-je ?</h2>
-        <p>Développeur passionné, je transforme des idées complexes en solutions digitales simples et percutantes.</p>
+      <div class="about__intro-row">
+        <div class="section-header reveal">
+          <span class="section-label">01 — À propos</span>
+          <h2>Des interfaces métier, pensées pour durer.</h2>
+        </div>
+        <p class="about__lead reveal">
+          Je m’appelle <strong>Néhémie Pédahel Kouyo</strong>. Je transforme des parcours complexes
+          — paiement, santé, logistique, communication — en applications web et mobiles
+          que les équipes opérationnelles utilisent vraiment.
+        </p>
       </div>
 
       <div class="about__grid">
-        <!-- Text side -->
         <div class="about__text reveal-left">
-          <p class="about__intro">
-            Je m'appelle <strong>Néhémie Pédahel Kouyo</strong>, développeur web et mobile
-            basé à <strong>Abidjan, Côte d'Ivoire</strong>. Avec plusieurs années d'expérience
-            dans des environnements exigeants et variés, j'ai eu l'occasion de concevoir des
-            applications complètes, de la stratégie UI/UX jusqu'au déploiement en production.
+          <p>
+            Basé à <strong>Abidjan</strong>, je travaille actuellement chez
+            <strong>Kyrmann Software Engineering</strong> en tant que développeur Angular :
+            intégration Figma, composants réutilisables, sprints Scrum, et livraison en production.
           </p>
-          <p class="about__body">
-            Que ce soit pour développer une application mobile Flutter publiée sur l'App Store
-            et le Play Store, construire une architecture microservices robuste avec Spring Boot
-            et Docker, ou créer des interfaces web réactives avec Angular ou Vue.js, je m'investis
-            pleinement dans chaque projet avec rigueur et créativité.
-          </p>
-          <p class="about__body">
-            Animé par la curiosité et le goût du défi, je reste constamment à l'affût des
-            dernières évolutions technologiques pour offrir des solutions modernes, maintenables
-            et performantes.
+          <p>
+            Avant cela, j’ai conçu des applications Flutter publiées sur les stores,
+            des architectures Spring Boot, et des interfaces Vue.js / Laravel.
+            La stack change, le fil conducteur reste le même : clarté, performance, maintenabilité.
           </p>
 
           <div class="about__meta">
-            <div class="about__meta-item">
-              <span class="about__meta-key">Disponibilité</span>
-              <span class="about__meta-val available"><span class="dot"></span>Disponible</span>
+            <div>
+              <span>Disponibilité</span>
+              <strong class="available"><i></i> Ouvert aux échanges</strong>
             </div>
-            <div class="about__meta-item">
-              <span class="about__meta-key">Localisation</span>
-              <span class="about__meta-val">Abidjan, CI</span>
+            <div>
+              <span>Localisation</span>
+              <strong>Abidjan, CI</strong>
             </div>
-            <div class="about__meta-item">
-              <span class="about__meta-key">Langues</span>
-              <span class="about__meta-val">Français</span>
+            <div>
+              <span>Langue</span>
+              <strong>Français</strong>
             </div>
           </div>
         </div>
 
-        <!-- Highlight cards -->
-        <div class="about__cards reveal-right">
+        <div class="about__side reveal-right">
           <div
-            v-for="(item, i) in highlights"
+            v-for="item in highlights"
             :key="item.label"
             class="about__card"
-            :style="`--card-color: ${item.color}; --delay: ${i * 0.1}s`"
           >
             <div class="about__card-icon">
-              <component :is="item.icon" :size="22" />
+              <component :is="item.icon" :size="20" />
             </div>
-            <div class="about__card-text">
-              <span class="about__card-label">{{ item.label }}</span>
-              <span class="about__card-val">{{ item.value }}</span>
+            <div>
+              <small>{{ item.label }}</small>
+              <strong>{{ item.value }}</strong>
             </div>
           </div>
 
-          <!-- Stats -->
           <div class="about__stats">
-            <div class="about__stat">
-              <span class="about__stat-num gradient-text">4+</span>
-              <span class="about__stat-label">Ans d'expérience</span>
+            <div>
+              <b>4+</b>
+              <span>Années d’expérience</span>
             </div>
-            <div class="about__stat">
-              <span class="about__stat-num gradient-text">10+</span>
-              <span class="about__stat-label">Technologies maîtrisées</span>
+            <div>
+              <b>5+</b>
+              <span>Produits livrés</span>
             </div>
-            <div class="about__stat">
-              <span class="about__stat-num gradient-text">3+</span>
-              <span class="about__stat-label">Projets déployés</span>
+            <div>
+              <b>2</b>
+              <span>Stores mobiles</span>
             </div>
           </div>
         </div>
@@ -107,188 +102,169 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-@use '../assets/main.scss' as *;
+@use '../assets/tokens' as *;
 
 .about {
   background: $bg-secondary;
+  border-top: 1px solid $border-color;
+
+  &__intro-row {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: end;
+    margin-bottom: 56px;
+
+    .section-header { margin-bottom: 0; }
+
+    @media (max-width: 800px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__lead {
+    font-size: 1.12rem;
+    color: $text-secondary;
+    line-height: 1.75;
+    padding-bottom: 8px;
+
+    strong { color: $text-primary; }
+  }
 
   &__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: start;
+    gap: 56px;
 
     @media (max-width: 900px) {
       grid-template-columns: 1fr;
-      gap: 48px;
+      gap: 40px;
     }
   }
 
-  &__intro {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: $text-primary;
-    line-height: 1.8;
-    margin-bottom: 20px;
-
-    strong { color: $accent-blue; font-weight: 700; }
-  }
-
-  &__body {
+  &__text p {
     color: $text-secondary;
-    line-height: 1.9;
-    margin-bottom: 20px;
-    font-size: 0.97rem;
+    margin-bottom: 18px;
+    font-size: 0.98rem;
+    line-height: 1.85;
+
+    strong { color: $text-primary; font-weight: 600; }
   }
 
   &__meta {
     display: flex;
-    gap: 28px;
     flex-wrap: wrap;
+    gap: 28px;
     margin-top: 32px;
     padding-top: 28px;
     border-top: 1px solid $border-color;
-  }
 
-  &__meta-item {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
+    span {
+      display: block;
+      font-family: $font-mono;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: $text-muted;
+      margin-bottom: 6px;
+    }
 
-  &__meta-key {
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: $text-muted;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-family: $font-mono;
-  }
+    strong {
+      font-size: 0.95rem;
+      font-weight: 650;
+    }
 
-  &__meta-val {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: $text-primary;
-
-    &.available {
-      color: #22c55e;
-      display: flex;
+    .available {
+      color: #7dba6a;
+      display: inline-flex;
       align-items: center;
-      gap: 6px;
-    }
+      gap: 8px;
 
-    .dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: #22c55e;
-      animation: pulseGreen 2s infinite;
+      i {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #7dba6a;
+      }
     }
   }
 
-  // ── Cards ────────────────────────────────────────────────
-  &__cards {
+  &__side {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 12px;
   }
 
   &__card {
     display: flex;
     align-items: center;
-    gap: 18px;
-    padding: 18px 22px;
+    gap: 16px;
+    padding: 16px 18px;
     background: $bg-card;
     border: 1px solid $border-color;
     border-radius: $radius-md;
     transition: $transition-base;
-    transition-delay: var(--delay);
 
     &:hover {
-      border-color: var(--card-color, $accent-blue);
-      background: $bg-card-hover;
-      transform: translateX(6px);
-      box-shadow: -4px 0 24px rgba(0,0,0,0.2), 4px 0 0 var(--card-color, $accent-blue) inset;
+      border-color: rgba($accent, 0.4);
+      transform: translateX(4px);
+    }
+
+    small {
+      display: block;
+      font-family: $font-mono;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: $text-muted;
+    }
+
+    strong {
+      font-size: 0.95rem;
+      font-weight: 650;
     }
   }
 
   &__card-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    color: $accent;
+    background: rgba($accent, 0.1);
+    border: 1px solid rgba($accent, 0.16);
     flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 46px; height: 46px;
-    border-radius: $radius-sm;
-    background: rgba(var(--card-color, #6366f1), 0.1);
-    color: var(--card-color, $accent-blue);
-    background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(139,92,246,0.15));
-    color: var(--card-color);
-    border: 1px solid rgba(255,255,255,0.06);
   }
 
-  &__card-text {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  &__card-label {
-    font-size: 0.72rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: $text-muted;
-    font-family: $font-mono;
-  }
-
-  &__card-val {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: $text-primary;
-  }
-
-  // ── Stats ─────────────────────────────────────────────────
   &__stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+    gap: 10px;
     margin-top: 8px;
-  }
 
-  &__stat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    padding: 22px 12px;
-    background: $bg-card;
-    border: 1px solid $border-color;
-    border-radius: $radius-md;
-    text-align: center;
-    transition: $transition-base;
+    div {
+      padding: 20px 10px;
+      text-align: center;
+      background: $bg-card;
+      border: 1px solid $border-color;
+      border-radius: $radius-md;
+    }
 
-    &:hover {
-      border-color: $border-hover;
-      background: $bg-card-hover;
+    b {
+      display: block;
+      font-family: $font-heading;
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: $accent-soft;
+      letter-spacing: -0.04em;
+    }
+
+    span {
+      font-size: 0.72rem;
+      color: $text-muted;
+      line-height: 1.35;
     }
   }
-
-  &__stat-num {
-    font-size: 1.8rem;
-    font-weight: 800;
-    font-family: $font-heading;
-  }
-
-  &__stat-label {
-    font-size: 0.72rem;
-    color: $text-muted;
-    font-weight: 500;
-    text-align: center;
-    line-height: 1.4;
-  }
-}
-
-@keyframes pulseGreen {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5); }
-  70%       { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
 }
 </style>
