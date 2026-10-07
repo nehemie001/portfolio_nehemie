@@ -126,7 +126,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   &__inner {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 20px;
   }
 
   &__logo {
@@ -149,6 +149,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
     font-size: 0.95rem;
     display: grid;
     place-items: center;
+    box-shadow: 4px 4px 0 0 $accent-blue;
   }
 
   .logo-name {
@@ -161,16 +162,17 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   &__links {
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: 0;
     flex: 1;
     justify-content: center;
+    min-width: 0;
 
-    @media (max-width: 1080px) { display: none; }
+    @media (max-width: 1180px) { display: none; }
   }
 
   &__link {
-    padding: 6px 10px;
-    font-size: 0.8rem;
+    padding: 6px 9px;
+    font-size: 0.78rem;
     font-weight: 500;
     color: $text-secondary;
     border-radius: 6px;
@@ -191,7 +193,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
     font-size: 0.82rem;
     padding: 9px 18px;
 
-    @media (max-width: 1080px) { display: none; }
+    @media (max-width: 1180px) { display: none; }
   }
 
   &__burger {
@@ -203,7 +205,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 
     &:hover { background: rgba(255, 255, 255, 0.06); }
 
-    @media (max-width: 1080px) { display: flex; }
+    @media (max-width: 1180px) { display: flex; }
   }
 
   &__mobile {
@@ -224,7 +226,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
     pointer-events: none;
     transition: $transition-base;
 
-    @media (max-width: 1080px) { display: flex; }
+    @media (max-width: 1180px) { display: flex; }
 
     &.open {
       transform: translateY(0);

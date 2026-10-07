@@ -16,8 +16,9 @@ body {
   font-family: $font-body;
   background-color: $bg-primary;
   background-image:
-    radial-gradient(ellipse 70% 50% at 85% -10%, rgba($accent, 0.16), transparent 60%),
-    radial-gradient(ellipse 50% 40% at 0% 100%, rgba($accent, 0.07), transparent 55%);
+    radial-gradient(ellipse 60% 48% at 92% -8%, rgba($accent, 0.14), transparent 58%),
+    radial-gradient(ellipse 48% 42% at -6% 108%, rgba($accent-blue, 0.12), transparent 55%),
+    linear-gradient(180deg, rgba(11, 16, 32, 0.4), transparent 28%);
   color: $text-primary;
   line-height: 1.7;
   overflow-x: hidden;
@@ -49,8 +50,8 @@ button {
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-heading;
   font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
+  line-height: 1.12;
+  letter-spacing: -0.04em;
   color: $text-primary;
 }
 
@@ -69,7 +70,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::selection {
-  background: rgba($accent, 0.28);
+  background: rgba($accent, 0.32);
   color: $ink;
 }
 
@@ -87,7 +88,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .section-header {
   margin-bottom: 64px;
-  max-width: 720px;
+  max-width: 740px;
 
   .section-label {
     font-family: $font-mono;
@@ -95,16 +96,16 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
     color: $accent;
     text-transform: uppercase;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.2em;
     margin-bottom: 14px;
     display: block;
   }
 
   h2 {
-    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-size: clamp(2.1rem, 4.6vw, 3.35rem);
     color: $text-primary;
     margin-bottom: 16px;
-    font-weight: 700;
+    font-weight: 800;
   }
 
   p {
@@ -154,8 +155,8 @@ h1, h2, h3, h4, h5, h6 {
   padding: 13px 22px;
   background: $accent;
   color: $ink;
-  border-radius: 10px;
-  font-weight: 650;
+  border-radius: 8px;
+  font-weight: 700;
   font-size: 0.92rem;
   font-family: $font-body;
   transition: $transition-base;
@@ -178,16 +179,16 @@ h1, h2, h3, h4, h5, h6 {
   background: transparent;
   color: $text-primary;
   border: 1px solid $border-color;
-  border-radius: 10px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 0.92rem;
   font-family: $font-body;
   transition: $transition-base;
 
   &:hover {
-    border-color: $accent;
-    color: $accent-soft;
-    background: rgba($accent, 0.08);
+    border-color: $accent-blue;
+    color: $accent-blue;
+    background: rgba($accent-blue, 0.08);
     transform: translateY(-1px);
   }
 }

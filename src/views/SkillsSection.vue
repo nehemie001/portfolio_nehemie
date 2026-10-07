@@ -6,7 +6,7 @@ const sectionRef = ref(null)
 const groups = [
   {
     title: 'Front-end',
-    items: ['Angular', 'Vue.js', 'TypeScript', 'RxJS', 'HTML / CSS / SCSS', 'Pinia'],
+    items: ['Angular', 'Vue.js', 'TypeScript', 'JavaScript', 'RxJS', 'HTML / CSS / SCSS', 'Pinia'],
   },
   {
     title: 'Mobile',
@@ -14,7 +14,7 @@ const groups = [
   },
   {
     title: 'Back-end & data',
-    items: ['Laravel', 'Spring Boot', 'PostgreSQL', 'API REST', 'Swagger'],
+    items: ['Spring Boot', 'Laravel', 'Java', 'PHP', 'PostgreSQL', 'MySQL', 'API REST', 'Swagger'],
   },
   {
     title: 'Outils & delivery',
@@ -40,8 +40,8 @@ onMounted(() => {
     <div class="container">
       <div class="section-header reveal">
         <span class="section-label">02 — Compétences</span>
-        <h2>Un arsenal volontairement ciblé.</h2>
-        <p>Les outils que j’utilise au quotidien pour concevoir, livrer et faire vivre des produits.</p>
+        <h2>Front, mobile, back — le même fil.</h2>
+        <p>Les briques que j’assemble au quotidien pour concevoir, livrer et faire vivre un produit de bout en bout.</p>
       </div>
 
       <div class="skills__bento">
@@ -90,10 +90,15 @@ onMounted(() => {
     background: $bg-card;
     border: 1px solid $border-color;
     border-radius: $radius-lg;
+    border-top: 2px solid $accent;
     transition: $transition-base;
     transition-delay: var(--delay);
     opacity: 0;
     transform: translateY(16px);
+
+    &:nth-child(2) { border-top-color: $accent-blue; }
+    &:nth-child(3) { border-top-color: $accent-soft; }
+    &:nth-child(4) { border-top-color: $accent-violet; }
 
     &.visible {
       opacity: 1;

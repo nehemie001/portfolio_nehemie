@@ -27,7 +27,7 @@ const year = new Date().getFullYear()
         <a class="footer__logo" href="#" @click.prevent="scrollTop()">
           <span>N</span> Néhémie Pédahel Kouyo
         </a>
-        <p>Développeur Web &amp; Mobile · Abidjan</p>
+        <p>Développeur Full-Stack · Abidjan</p>
         <div class="footer__contacts">
           <a href="mailto:kouyonehemiepedahel@gmail.com"><Mail :size="14" /> kouyonehemiepedahel@gmail.com</a>
           <a href="tel:+2250779951800"><Phone :size="14" /> +225 07 79 951 800</a>
@@ -47,7 +47,7 @@ const year = new Date().getFullYear()
       <div>
         <h4>Stack</h4>
         <div class="footer__tags">
-          <span v-for="t in ['Angular', 'Vue.js', 'Flutter', 'TypeScript', 'Spring Boot', 'Laravel']" :key="t">{{ t }}</span>
+          <span v-for="t in ['Angular', 'Vue.js', 'Flutter', 'Spring Boot', 'Laravel', 'PostgreSQL', 'Docker']" :key="t">{{ t }}</span>
         </div>
       </div>
     </div>

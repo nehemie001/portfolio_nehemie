@@ -82,8 +82,8 @@ onMounted(() => {
       <div class="contact__grid">
         <div class="contact__info reveal-left">
           <p>
-            Front-end Angular, mobile Flutter, ou un produit à structurer :
-            écrivez-moi. On peut aussi simplement échanger.
+            Web, mobile ou back-end — Angular, Vue.js, Flutter, Spring Boot, Laravel.
+            Un produit à concevoir ou à faire grandir : écrivez-moi. On peut aussi simplement échanger.
           </p>
 
           <div class="contact__items">
@@ -230,7 +230,7 @@ onMounted(() => {
     border: 1px solid $border-color;
 
     &:hover { color: $accent; border-color: $accent; }
-    .ok { color: #7dba6a; }
+    .ok { color: $status-ok; }
   }
 
   &__alt {
@@ -245,9 +245,9 @@ onMounted(() => {
     gap: 10px;
     padding: 10px 16px;
     border-radius: 100px;
-    background: rgba(125, 186, 106, 0.08);
-    border: 1px solid rgba(125, 186, 106, 0.22);
-    color: #7dba6a;
+    background: rgba($status-ok, 0.08);
+    border: 1px solid rgba($status-ok, 0.22);
+    color: $status-ok;
     font-size: 0.84rem;
     font-weight: 500;
 
@@ -255,7 +255,7 @@ onMounted(() => {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #7dba6a;
+      background: $status-ok;
     }
   }
 

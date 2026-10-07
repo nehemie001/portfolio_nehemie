@@ -28,12 +28,12 @@ onMounted(() => {
       <div class="about__intro-row">
         <div class="section-header reveal">
           <span class="section-label">01 — À propos</span>
-          <h2>Des interfaces métier, pensées pour durer.</h2>
+          <h2>Du front au back, jusqu’au mobile.</h2>
         </div>
         <p class="about__lead reveal">
-          Je m’appelle <strong>Néhémie Pédahel Kouyo</strong>. Je transforme des parcours complexes
-          — paiement, santé, logistique, communication — en applications web et mobiles
-          que les équipes opérationnelles utilisent vraiment.
+          Je m’appelle <strong>Néhémie Pédahel Kouyo</strong>. Développeur full-stack basé à Abidjan,
+          je conçois des produits web et mobiles de bout en bout — interfaces, APIs, données —
+          pour des contextes métier exigeants : paiement, santé, logistique, communication.
         </p>
       </div>
 
@@ -41,13 +41,14 @@ onMounted(() => {
         <div class="about__text reveal-left">
           <p>
             Basé à <strong>Abidjan</strong>, je travaille actuellement chez
-            <strong>Kyrmann Software Engineering</strong> en tant que développeur Angular :
-            intégration Figma, composants réutilisables, sprints Scrum, et livraison en production.
+            <strong>Kyrmann Software Engineering</strong> en tant que développeur full-stack :
+            plateformes Angular en production, APIs REST, intégration Figma, et livraison en sprints Scrum.
           </p>
           <p>
-            Avant cela, j’ai conçu des applications Flutter publiées sur les stores,
-            des architectures Spring Boot, et des interfaces Vue.js / Laravel.
-            La stack change, le fil conducteur reste le même : clarté, performance, maintenabilité.
+            Avant cela : apps Flutter publiées sur les stores, microservices
+            <strong>Spring Boot / Docker / PostgreSQL</strong>, et produits
+            <strong>Vue.js / Laravel / PHP / MySQL</strong>.
+            La stack change, le fil reste le même : clarté, performance, maintenabilité.
           </p>
 
           <div class="about__meta">
@@ -175,7 +176,7 @@ onMounted(() => {
     }
 
     .available {
-      color: #7dba6a;
+      color: $status-ok;
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -184,7 +185,7 @@ onMounted(() => {
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background: #7dba6a;
+        background: $status-ok;
       }
     }
   }

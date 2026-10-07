@@ -7,18 +7,18 @@ const sectionRef = ref(null)
 const experiences = [
   {
     id: 1,
-    role: 'Développeur Web Angular',
+    role: 'Développeur Full-Stack',
     company: 'Kyrmann Software Engineering',
     location: 'Abidjan, CI',
     period: 'Mai 2025 – Aujourd\'hui',
     type: 'CDI',
     tasks: [
       'Développement des plateformes PRESTIGE-SMS (campagnes SMS) et PRIMUS KARE (parcours de soins)',
-      'Intégration de maquettes Figma en composants Angular réutilisables',
-      'Fonctionnalités front-end en collaboration produit, suivi de tickets Jira / Scrum',
+      'Interfaces Angular, intégration Figma et composants réutilisables',
+      'Consommation d’APIs REST, collaboration produit, sprints Jira / Scrum',
       'Performance, accessibilité et qualité des interfaces métier',
     ],
-    tags: ['Angular', 'TypeScript', 'Figma', 'Jira', 'Scrum', 'RxJS'],
+    tags: ['Angular', 'TypeScript', 'RxJS', 'API REST', 'Figma', 'Scrum'],
   },
   {
     id: 2,
@@ -81,7 +81,7 @@ onMounted(() => {
       <div class="section-header reveal">
         <span class="section-label">03 — Expérience</span>
         <h2>Parcours professionnel</h2>
-        <p>Des contextes variés : éditeur logiciel, hub d’innovation, ESN, agence digitale.</p>
+        <p>Web, mobile et back-end — éditeur logiciel, hub d’innovation, ESN, agence digitale.</p>
       </div>
 
       <div class="exp">

@@ -127,7 +127,7 @@ watch(activeFilter, async () => {
         <div class="section-header reveal">
           <span class="section-label">04 — Projets</span>
           <h2>Produits livrés.</h2>
-          <p>Du SaaS SMS à la santé, en passant par le dépannage automobile — des interfaces utilisées en conditions réelles.</p>
+          <p>SaaS, santé, mobile — des applications web et natives utilisées en conditions réelles.</p>
         </div>
 
         <div class="projects__filters reveal">
@@ -559,13 +559,13 @@ watch(activeFilter, async () => {
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: #5a9a4a;
+      background: $status-ok;
     }
 
     em {
       margin-left: auto;
       font-style: normal;
-      color: #7dba6a;
+      color: $status-ok;
       font-size: 0.7rem;
     }
   }
